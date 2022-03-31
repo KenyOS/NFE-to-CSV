@@ -22,8 +22,8 @@ for xml in f:
             soup = BeautifulSoup(data, 'lxml')
             products = soup.find_all('prod')
             for product in products:
-                try:
-                    dataList.append([product.find('xprod').getText(),
+
+                dataList.append([product.find('xprod').getText(),
                                  product.find('ncm').getText(),
                                  product.find('ucom').getText(),
                                  product.find('qcom').getText(),
@@ -32,8 +32,6 @@ for xml in f:
                                  soup.find('dest').find('cnpj').getText(),
                                  soup.find('dest').find('xnome').getText(),
                                  soup.find('dhemi').getText()])
-                    pd.DataFrame(dataList).to_csv("vendas.csv")
-                except:
-                    pass
+                pd.DataFrame(dataList).to_csv("vendas.csv")
 
 print("Processamento finalizado com sucesso")
